@@ -1,3 +1,7 @@
+//File: OpticalFlow.hpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #ifndef OPTICALFLOW_HPP
 #define OPTICALFLOW_HPP
 
@@ -30,6 +34,12 @@ namespace src
                    virtual void setMaxCount(int count);
                    virtual void setEpsilonFactor(double epsilon);
 
+                   //OPTICAL FLOW
+                   virtual void setWinSize(int width, int height);
+                   virtual void setMaxLevels(int levels);
+                   virtual void setFlags(int flag);
+                   virtual void setThresholdEigenvalue(double value);
+
                private:
                    //GOOD FEATURES TO TRACK
                    int mCorners;
@@ -42,6 +52,13 @@ namespace src
                    int mType;
                    int mMaxCount;
                    double mEpsilon;
+
+                   //OPTICAL FLOW
+                   int mSizeWidth;
+                   int mSizeHeight;
+                   int mMaxLevels;
+                   int mFlags;
+                   double mThreshold;
            };
        }
     }

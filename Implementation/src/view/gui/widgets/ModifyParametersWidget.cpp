@@ -12,6 +12,7 @@
 #include <src/view/gui/events/ModifyPedestrianDetectorEvent.hpp>
 
 #include "ui_ModifyParametersWidget.h"
+#include <iostream>
 
 namespace src
 {
@@ -67,6 +68,11 @@ namespace src
                 void ModifyParametersWidget::observableUpdated(const model::av::events::AVStarted &event)
                 {
                     ui->avListComboBox->setEnabled(!event.getIsActivated());
+
+                    for (auto& av : mAVWidgetVector)
+                    {
+                        av.second->setCPUGPUActivated(!event.getIsActivated());
+                    }
                 }
 
                 void ModifyParametersWidget::on_avListComboBox_activated(const QString &arg)

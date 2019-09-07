@@ -1,3 +1,7 @@
+//File: UpdateBenchmarkEvent.hpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #ifndef UPDATEBENCHMARKEVENT_HPP
 #define UPDATEBENCHMARKEVENT_HPP
 

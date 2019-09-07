@@ -1,3 +1,7 @@
+//File: StartAVController.cpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #include <src/controller/av/StartAVController.hpp>
 #include <src/model/av/AVTypes.hpp>
 #include <iostream>

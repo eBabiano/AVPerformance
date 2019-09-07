@@ -23,6 +23,12 @@ namespace src
                 mTermCriteriaParameters[OpticalFlowTypes::TYPE] = 1;
                 mTermCriteriaParameters[OpticalFlowTypes::MAX_COUNT] = 20;
                 mTermCriteriaParameters[OpticalFlowTypes::EPS] = 0.03;
+
+                mOpticalFlowParameters[OpticalFlowTypes::WIN_SIZE_WIDTH] = 31;
+                mOpticalFlowParameters[OpticalFlowTypes::WIN_SIZE_HEIGHT] = 31;
+                mOpticalFlowParameters[OpticalFlowTypes::MAX_LEVELS] = 3;
+                mOpticalFlowParameters[OpticalFlowTypes::FLAGS] = 0;
+                mOpticalFlowParameters[OpticalFlowTypes::THRESHOLD] = 0.001;
             }
 
             std::string OpticalFlow::getProcessorType() const
@@ -59,6 +65,17 @@ namespace src
             void OpticalFlow::setTermCriteriaParameters(const std::map<std::string, double> &value)
             {
                 mTermCriteriaParameters = value;
+                notify(events::AlgorithmParametersModified(model::av::AVTypes::OPTICAL_FLOW));
+            }
+
+            double OpticalFlow::getOpticalFlowParameters(const std::string &type) const
+            {
+                return mOpticalFlowParameters.at(type);
+            }
+
+            void OpticalFlow::setOpticalFlowParameters(const std::map<std::string, double> &value)
+            {
+                mOpticalFlowParameters = value;
                 notify(events::AlgorithmParametersModified(model::av::AVTypes::OPTICAL_FLOW));
             }
 

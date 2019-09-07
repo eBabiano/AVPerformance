@@ -18,7 +18,7 @@ namespace src
                 class VideoPlayerManager
                 {
                     public:
-                        VideoPlayerManager(const std::string &cameraType, const std::string& stereoType);
+                        VideoPlayerManager(const std::string &cameraType, const std::string& videoPath);
 
                         std::vector<VideoPlayer *> getVideoPlayers();
                         VideoPlayer* getVideoPlayerMono();

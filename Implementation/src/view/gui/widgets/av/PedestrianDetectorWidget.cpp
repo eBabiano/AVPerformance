@@ -53,6 +53,12 @@ namespace src
                         delete ui;
                     }
 
+                    void PedestrianDetectorWidget::setCPUGPUActivated(bool activate)
+                    {
+                        ui->cpuRadioButton->setEnabled(activate);
+                        ui->gpuRadioButton->setEnabled(activate);
+                    }
+
                     void PedestrianDetectorWidget::on_cpuRadioButton_toggled(bool checked)
                     {
                         ui->gpuRadioButton->setChecked(false);

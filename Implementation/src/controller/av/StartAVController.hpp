@@ -1,3 +1,7 @@
+//File: StartAVController.hpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #ifndef STARTAVCONTROLLER_HPP
 #define STARTAVCONTROLLER_HPP
 

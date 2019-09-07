@@ -1,3 +1,7 @@
+//File: UpdateBenchmarkEvent.cpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #include <src/view/av/events/UpdateBenchmarkEvent.hpp>
 
 namespace src

@@ -45,6 +45,12 @@ namespace src
                         delete ui;
                     }
 
+                    void FaceDetectionWidget::setCPUGPUActivated(bool activate)
+                    {
+                        ui->cpuRadioButton->setEnabled(activate);
+                        ui->gpuRadioButton->setEnabled(activate);
+                    }
+
                     void FaceDetectionWidget::on_cpuRadioButton_toggled(bool checked)
                     {
                         ui->gpuRadioButton->setChecked(false);

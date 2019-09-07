@@ -35,6 +35,8 @@ namespace src
                             void hidden();
                             virtual void observableUpdated(const model::av::events::AVStarted& event);
 
+                            virtual void setCPUGPUActivated(bool activate) = 0;
+
                     protected:
                             model::av::AVManager* mAVManager;
 

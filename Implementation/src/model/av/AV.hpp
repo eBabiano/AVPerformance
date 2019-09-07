@@ -44,6 +44,9 @@ namespace src
                     virtual double getTermCriteriaParameters(const std::string &type) const{assert(false);}
                     virtual void setTermCriteriaParameters(const std::map<std::string, double> &value){assert(false);}
 
+                    virtual double getOpticalFlowParameters(const std::string &type) const{assert(false);}
+                    virtual void setOpticalFlowParameters(const std::map<std::string, double> &value){assert(false);}
+
                     //PEDESTRIAN DETECTOR
                     virtual double getHitThreshold() const{assert(false);}
                     virtual void setHitThreshold(double value){assert(false);}

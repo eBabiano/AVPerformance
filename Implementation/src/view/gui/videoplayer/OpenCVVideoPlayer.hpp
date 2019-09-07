@@ -22,6 +22,7 @@ namespace src
                         virtual void init();
                         //virtual void run(cv::Mat newframe);
                         virtual void run(cv::Mat image, bool isShown);
+                        virtual void stop();
                         virtual cv::Mat getCurrentFrame();
 
                     private:
@@ -30,6 +31,11 @@ namespace src
                         cv::VideoWriter* mVideoWriter;
                         int mFrameNumber;
                         char mWaitKey;
+                        bool isInit;
+
+                        int mCaptureInput;
+                        bool mIsFromVideo;
+                        std::string mVideoFile;
 
                         bool mIsRunningThread;
 

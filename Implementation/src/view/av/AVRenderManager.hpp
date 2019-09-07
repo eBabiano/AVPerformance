@@ -1,3 +1,7 @@
+//File: AVRenderManager.hpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #ifndef AVRENDERMANAGER_HPP
 #define AVRENDERMANAGER_HPP
 

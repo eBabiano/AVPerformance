@@ -1,3 +1,7 @@
+//File: SelectAVController.cpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #include <src/controller/av/SelectAVController.hpp>
 
 namespace src

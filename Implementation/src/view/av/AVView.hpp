@@ -1,3 +1,7 @@
+//File: AVView.hpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #ifndef AVVIEW_HPP
 #define AVVIEW_HPP
 
@@ -63,6 +67,11 @@ namespace src
                    virtual void setTermCriteriaType(int type){assert(false);}
                    virtual void setMaxCount(int count){assert(false);}
                    virtual void setEpsilonFactor(double epsilon){assert(false);}
+
+                   virtual void setWinSize(int width, int height){assert(false);}
+                   virtual void setMaxLevels(int levels){assert(false);}
+                   virtual void setFlags(int flag){assert(false);}
+                   virtual void setThresholdEigenvalue(double value){assert(false);}
 
                    //PEDESTRIAN DETECTOR
                    virtual void setHitThreshold(double value){assert(false);}

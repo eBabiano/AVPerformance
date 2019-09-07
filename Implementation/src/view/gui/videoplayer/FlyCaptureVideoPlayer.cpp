@@ -134,6 +134,11 @@ namespace src
                     }
 
                 }
+
+                void FlyCaptureVideoPlayer::stop()
+                {
+
+                }
             }
         }
     }

@@ -1,3 +1,7 @@
+//File: BackgroundSubtractor.hpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #ifndef BACKGROUNDSUBTRACTOR_HPP
 #define BACKGROUNDSUBTRACTOR_HPP
 

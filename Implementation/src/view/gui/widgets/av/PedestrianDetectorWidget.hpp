@@ -26,6 +26,8 @@ namespace src
                         explicit PedestrianDetectorWidget(model::av::AVManager& avManager, QWidget *parent = 0);
                         ~PedestrianDetectorWidget();
 
+                        virtual void setCPUGPUActivated(bool activate);
+
                     private slots:
                         void on_cpuRadioButton_toggled(bool checked);
                         void on_gpuRadioButton_toggled(bool checked);

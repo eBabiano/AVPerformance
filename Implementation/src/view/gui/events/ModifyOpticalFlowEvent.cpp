@@ -12,12 +12,13 @@ namespace src
                                                                const std::map<std::string, double>& goodFeatures,
                                                                const std::map<std::string, double> &termCriteria
                                                                /*const std::map<const std::string&, double>& cornerSubPix,
-                                                               const std::map<const std::string&, double>& opticalFlow*/)
+                                                               const std::map<const std::string&, double>& opticalFlow*/,
+                                                               const std::map<std::string, double> &opticalFlow)
                     : mProcessorType(type)
                     , mGoodFeaturesParameters(goodFeatures)
                     , mTermCriteriaParameters(termCriteria)
-                    /*, mCornerSubPixParameters(cornerSubPix)
-                    , mOpticalFlowParameters(opticalFlow)*/
+                    /*, mCornerSubPixParameters(cornerSubPix)*/
+                    , mOpticalFlowParameters(opticalFlow)
                 {
                 }
 
@@ -42,10 +43,10 @@ namespace src
 //                }
 
 
-//                const std::map<const std::string&, double>& ModifyOpticalFlowEvent::getOpticalFlowParameters() const
-//                {
-//                    return mOpticalFlowParameters;
-//                }
+                const std::map<std::string, double>& ModifyOpticalFlowEvent::getOpticalFlowParameters() const
+                {
+                    return mOpticalFlowParameters;
+                }
 
 
             }

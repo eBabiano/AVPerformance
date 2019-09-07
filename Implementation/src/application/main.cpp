@@ -1,3 +1,8 @@
+//File: main.cpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+//Description: This is a performance application for the analysis of artificial vision algorithms in ARM embedded systems
+
 #include <iostream>
 
 #include <src/model/av/AVManager.hpp>
@@ -37,19 +42,19 @@ int main(int argc, char* argv[])
     int exitCode = -13;
 
     std::string videoCaptureOption = "";
-    std::string stereoOption = "";
+    std::string videoPath = "";
     if (argc > 1)
     {
         videoCaptureOption = std::string(argv[1]);
 
         if (argc > 2)
         {
-            stereoOption = std::string(argv[2]);
+            videoPath = std::string(argv[2]);
         }
     }
     else
     {
-        std::cout << "Error in parameters: Specify input camera: [--fly], [--cam], [--video [--stereo]]" << std::endl;
+        std::cout << "Error in parameters: Specify input camera: [--fly], [--cam], [--video [path]]" << std::endl;
         exit(-1);
     }
 
@@ -70,7 +75,7 @@ int main(int argc, char* argv[])
     src::view::av::AVRenderManager* mAVRenderManager = new src::view::av::AVRenderManager(*mAVManager, *mUpdateBenchmarkController);
 
    /// std::string windowOutput = "Output Video";
-    src::view::gui::videoplayer::VideoPlayerManager* videoPlayerManager = new src::view::gui::videoplayer::VideoPlayerManager(videoCaptureOption, stereoOption);
+    src::view::gui::videoplayer::VideoPlayerManager* videoPlayerManager = new src::view::gui::videoplayer::VideoPlayerManager(videoCaptureOption, videoPath);
     ///cv::setMouseCallback(windowOutput, onMouse, NULL);
     std::cout << "OpenCV version: " << CV_VERSION << std::endl;
 

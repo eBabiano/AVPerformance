@@ -1,3 +1,7 @@
+//File: SelectAVController.hpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #ifndef SELECTAVCONTROLLER_HPP
 #define SELECTAVCONTROLLER_HPP
 

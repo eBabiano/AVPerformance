@@ -15,26 +15,35 @@ namespace src
                     : mWindowOutputName(nameOutput)
                     , mIsRunningThread(true)
                     , mFrameNumber(0)
+                    , isInit(true)
+                    , mCaptureInput(captureInput)
+                    , mIsFromVideo(isFromVideo)
+                    , mVideoFile(videoFile)
                 {
                     mCurrentFrame = cv::Mat::zeros(cv::Size(640, 480), CV_8UC3);
 
-                    if (isFromVideo)
+                    mCapture.set(CV_CAP_PROP_FRAME_WIDTH, 640);
+                    mCapture.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
+
+
+                }
+
+                void OpenCVVideoPlayer::init()
+                {
+                    if (mIsFromVideo)
                     {
-                        mCapture.open(videoFile);
+                        mCapture.open(mVideoFile);
                     }
                     else
                     {
-                        mCapture.open(captureInput);
+                        mCapture.open(mCaptureInput);
                     }
 
                     if (!mCapture.isOpened())
                     {
                         std::cout << "Could not open" << std::endl;
                     }
-                }
 
-                void OpenCVVideoPlayer::init()
-                {
                     cv::Size sizeRef = cv::Size((int) mCapture.get(CV_CAP_PROP_FRAME_WIDTH),
                                                 (int) mCapture.get(CV_CAP_PROP_FRAME_HEIGHT));
 
@@ -52,6 +61,9 @@ namespace src
 
                 void OpenCVVideoPlayer::run(cv::Mat image, bool isShown)
                 {
+                    if (isInit)
+                        init();
+                    isInit = false;
                     mCapture >> mCurrentFrame;
 
                     if (mCurrentFrame.empty())
@@ -70,6 +82,12 @@ namespace src
                         cv::imshow(mWindowOutputName, image);
                     }
                     mWaitKey = (char) cv::waitKey(1);
+                }
+
+                void OpenCVVideoPlayer::stop()
+                {
+                    mCapture.release();
+                    isInit = true;
                 }
 
                 cv::Mat OpenCVVideoPlayer::getCurrentFrame()

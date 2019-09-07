@@ -28,6 +28,8 @@ namespace src
                         explicit OpticalFlowWidget(model::av::AVManager &avManager, QWidget *parent = 0);
                         ~OpticalFlowWidget();
 
+                        virtual void setCPUGPUActivated(bool activate);
+
 
                     private slots:
                         //Good features to track
@@ -42,6 +44,16 @@ namespace src
                         void on_epsRadioButton_clicked();
                         void on_maxCountSpinBox_editingFinished();
                         void on_epsilonSpinBox_editingFinished();
+
+                        void on_cpuRadioButton_toggled(bool checked);
+                        void on_gpuRadioButton_toggled(bool checked);
+
+                        void on_sizeWidthSpinBox_editingFinished();
+                        void on_sizeHeightSpinBox_editingFinished();
+                        void on_maxLevelsSpinBox_editingFinished();
+                        void on_initialFlowRadioButton_clicked();
+                        void on_eigenvalsRadioButton_clicked();
+                        void on_thresholdSpinBox_editingFinished();
 
                     private:
                         Ui::OpticalFlowWidget *ui;
@@ -58,6 +70,13 @@ namespace src
                         int mType;
                         int mMaxCount;
                         double mEpsilon;
+
+                        //OpticalFlow
+                        int mSizeWidth;
+                        int mSizeHeight;
+                        int mMaxLevels;
+                        int mFlags;
+                        double mThreshold;
 
                         void update();
 

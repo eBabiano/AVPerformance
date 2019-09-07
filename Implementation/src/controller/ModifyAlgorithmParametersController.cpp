@@ -1,3 +1,7 @@
+//File: ModifyAlgorithmParametersController.cpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #include <src/controller/ModifyAlgorithmParametersController.hpp>
 #include <src/model/av/AVTypes.hpp>
 #include <src/model/av/OpticalFlowTypes.hpp>
@@ -31,6 +35,7 @@ namespace src
             mAVManager->getAlgorithm(model::av::AVTypes::OPTICAL_FLOW)->setProcessorType(event.getProcessorType());
             mAVManager->getAlgorithm(model::av::AVTypes::OPTICAL_FLOW)->setGoodFeaturesParameters(event.getGoodFeaturesParameters());
             mAVManager->getAlgorithm(model::av::AVTypes::OPTICAL_FLOW)->setTermCriteriaParameters(event.getTermCriteriaParameters());
+            mAVManager->getAlgorithm(model::av::AVTypes::OPTICAL_FLOW)->setOpticalFlowParameters(event.getOpticalFlowParameters());
         }
 
         void ModifyAlgorithmParametersController::observableUpdated(const view::gui::events::ModifyPedestrianDetectorEvent &event)

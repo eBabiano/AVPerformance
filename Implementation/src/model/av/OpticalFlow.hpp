@@ -25,11 +25,14 @@ namespace src
                     virtual std::string getProcessorType() const;
                     virtual void setProcessorType(const std::string& type);
 
-                    double getGoodFeaturesParameters(const std::string &type) const;
-                    void setGoodFeaturesParameters(const std::map<std::string, double> &value);
+                    virtual double getGoodFeaturesParameters(const std::string &type) const;
+                    virtual void setGoodFeaturesParameters(const std::map<std::string, double> &value);
 
                     virtual double getTermCriteriaParameters(const std::string &type) const;
                     virtual void setTermCriteriaParameters(const std::map<std::string, double> &value);
+
+                    virtual double getOpticalFlowParameters(const std::string &type) const;
+                    virtual void setOpticalFlowParameters(const std::map<std::string, double> &value);
 
             private:
                     std::string mProcessorType;

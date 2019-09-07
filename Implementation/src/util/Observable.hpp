@@ -1,3 +1,7 @@
+//File: Observable.hpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #ifndef OBSERVABLE_HPP
 #define OBSERVABLE_HPP
 

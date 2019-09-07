@@ -22,6 +22,14 @@ namespace src
             const std::string OpticalFlowTypes::MAX_COUNT("MAX_COUNT");
             const std::string OpticalFlowTypes::EPS("EPS");
 
+            //OPTICAL FLOW LUCAS-KANADE
+            const std::string OpticalFlowTypes::WIN_SIZE_WIDTH("WIN_SIZE_WIDTH");
+            const std::string OpticalFlowTypes::WIN_SIZE_HEIGHT("WIN_SIZE_HEIGHT");
+            const std::string OpticalFlowTypes::MAX_LEVELS("MAX_LEVELS");
+            const std::string OpticalFlowTypes::FLAGS("FLAGS");
+            const std::string OpticalFlowTypes::THRESHOLD("THRESHOLD");
+
+
         }
     }
 }

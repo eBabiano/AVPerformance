@@ -28,6 +28,13 @@ namespace src
                     static const std::string MAX_COUNT;
                     static const std::string EPS;
 
+                    //OPTICAL FLOW LUCAS-KANADE
+                    static const std::string WIN_SIZE_WIDTH;
+                    static const std::string WIN_SIZE_HEIGHT;
+                    static const std::string MAX_LEVELS;
+                    static const std::string FLAGS;
+                    static const std::string THRESHOLD;
+
             };
         }
     }

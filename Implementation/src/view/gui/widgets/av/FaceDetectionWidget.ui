@@ -69,12 +69,26 @@
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Size</string>
+        <string>Size:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Width</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QSpinBox" name="sizeWidthSpinBox"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Height</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QSpinBox" name="sizeHeightSpinBox"/>

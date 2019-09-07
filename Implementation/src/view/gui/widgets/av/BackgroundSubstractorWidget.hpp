@@ -28,6 +28,8 @@ namespace src
                         explicit BackgroundSubstractorWidget(model::av::AVManager &avManager, QWidget *parent = 0);
                         ~BackgroundSubstractorWidget();
 
+                        virtual void setCPUGPUActivated(bool activate){}
+
                     private slots:
                         void on_learningRateSpinBox_editingFinished();
 

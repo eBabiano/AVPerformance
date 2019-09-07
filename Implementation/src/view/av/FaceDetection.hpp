@@ -1,3 +1,7 @@
+//File: FaceDetection.hpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #ifndef FACEDETECTION_HPP
 #define FACEDETECTION_HPP
 

@@ -1,3 +1,7 @@
+//File: MainWindow.cpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #include <src/view/gui/MainWindow.hpp>
 #include <src/view/gui/container/ViewElements.hpp>
 #include "ui_MainWindow.h"
@@ -22,12 +26,12 @@ namespace src
             {
                 ui->setupUi(this);
 
+                mAVManager->src::util::Observable<model::av::events::AVStarted>::attach(*this);
+
                 initializeGUI();
 
                 mFlipVert=false;
                 mFlipHoriz=false;
-
-                startTimer(0);
             }
 
             MainWindow::~MainWindow()
@@ -67,6 +71,25 @@ namespace src
             {
                 mModifyParametersWidget->setModifyAlgorithmParametersController(ModifyAlgorithmParametersController);
                 mModifyParametersWidget->initAVParameters();
+            }
+
+            void MainWindow::observableUpdated(const model::av::events::AVStarted &event)
+            {
+                if (event.getIsActivated())
+                {
+                    int fps = 30.0;
+                    int milliseconds = (1.0 / fps) * 1000.0;
+
+                    mIdTimer = startTimer(milliseconds);
+                }
+                else
+                {
+                    killTimer(mIdTimer);
+                    for (auto& videoPlayer : mVideoPlayerManager->getVideoPlayers())
+                    {
+                        videoPlayer->stop();
+                    }
+                }
             }
 
             void MainWindow::timerEvent(QTimerEvent *event)

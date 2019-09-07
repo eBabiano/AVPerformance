@@ -1,3 +1,6 @@
+//File: AVRenderManager.cpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
 
 #include <src/view/av/AVRenderManager.hpp>
 
@@ -178,6 +181,24 @@ namespace src
                mAVViews.at(model::av::AVTypes::OPTICAL_FLOW)->setTermCriteriaType(typeCriteria);
                mAVViews.at(model::av::AVTypes::OPTICAL_FLOW)->setMaxCount(maxCount);
                mAVViews.at(model::av::AVTypes::OPTICAL_FLOW)->setEpsilonFactor(epsilon);
+
+               //OPTICAL FLOW LUCAS KANADE
+
+               int width = mAVManager->getAlgorithm(model::av::AVTypes::OPTICAL_FLOW)->
+                       getOpticalFlowParameters(model::av::OpticalFlowTypes::WIN_SIZE_WIDTH);
+               int height = mAVManager->getAlgorithm(model::av::AVTypes::OPTICAL_FLOW)->
+                       getOpticalFlowParameters(model::av::OpticalFlowTypes::WIN_SIZE_HEIGHT);
+               int levels = mAVManager->getAlgorithm(model::av::AVTypes::OPTICAL_FLOW)->
+                       getOpticalFlowParameters(model::av::OpticalFlowTypes::MAX_LEVELS);
+               int flags = mAVManager->getAlgorithm(model::av::AVTypes::OPTICAL_FLOW)->
+                       getOpticalFlowParameters(model::av::OpticalFlowTypes::FLAGS);
+               double threshold = mAVManager->getAlgorithm(model::av::AVTypes::OPTICAL_FLOW)->
+                       getOpticalFlowParameters(model::av::OpticalFlowTypes::THRESHOLD);
+
+               mAVViews.at(model::av::AVTypes::OPTICAL_FLOW)->setWinSize(width, height);
+               mAVViews.at(model::av::AVTypes::OPTICAL_FLOW)->setMaxLevels(levels);
+               mAVViews.at(model::av::AVTypes::OPTICAL_FLOW)->setFlags(flags);
+               mAVViews.at(model::av::AVTypes::OPTICAL_FLOW)->setThresholdEigenvalue(threshold);
            }
 
            void AVRenderManager::initializePedestrianDetector()

@@ -1,3 +1,7 @@
+//File: String.cpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #include <src/util/String.hpp>
 #include <iomanip>
 #include <sstream>

@@ -9,7 +9,7 @@ namespace src
         {
             namespace videoplayer
             {
-                VideoPlayerManager::VideoPlayerManager(const std::string& cameraType, const std::string& stereoType)
+                VideoPlayerManager::VideoPlayerManager(const std::string& cameraType, const std::string& videoPath)
                     : mCameraType(cameraType)
                     , mIsStereo(false)
                 {
@@ -56,32 +56,34 @@ namespace src
                      }
                      else if (cameraType == VideoPlayerTypes::VIDEO_MONO)
                      {
-                         std::string video1 = "../res/videos/sea.avi";
-                         std::string video2 = "../res/videos/video_0009_C0.raw";
-                         OpenCVVideoPlayer* videoPlayer1 = new OpenCVVideoPlayer(0, "Video", true, video2);
+//                         std::string video1 = "../res/videos/sea.avi";
+//                         std::string video2 = "../res/videos/video_0009_C0.raw";
+                         OpenCVVideoPlayer* videoPlayer1 = new OpenCVVideoPlayer(0, "Video", true, videoPath);
                          mVideoPlayersVector[VideoPlayerTypes::VIDEO_MONO] = videoPlayer1;
                          videoPlayer1->setType(VideoPlayerTypes::VIDEO_MONO);
                          videoPlayer1->init();
                      }
-                     else if (stereoType == VideoPlayerTypes::VIDEO_STEREO)
-                     {
-                         mIsStereo = true;
 
-                         std::string video1 = "../res/videos/sea.avi";
-                         std::string video2 = "../res/videos/video_0009_C0.raw";
-                         OpenCVVideoPlayer* videoPlayer1 = new OpenCVVideoPlayer(0, "Video1", true, video2);
-                         mVideoPlayersVector[VideoPlayerTypes::VIDEO_1] = videoPlayer1;
-                         videoPlayer1->setType(VideoPlayerTypes::VIDEO_1);
-                         videoPlayer1->init();
+                     ///@todo This is for develop the Stereo input video
+//                     else if (stereoType == VideoPlayerTypes::VIDEO_STEREO)
+//                     {
+//                         mIsStereo = true;
 
-                         OpenCVVideoPlayer* videoPlayer2 = new OpenCVVideoPlayer(0, "Video2", true, "../res/videos/sea.avi");
-                         mVideoPlayersVector[VideoPlayerTypes::VIDEO_2] = videoPlayer2;
-                         videoPlayer2->setType(VideoPlayerTypes::VIDEO_2);
-                         videoPlayer2->init();
-                     }
+//                         std::string video1 = "../res/videos/sea.avi";
+//                         std::string video2 = "../res/videos/video_0009_C0.raw";
+//                         OpenCVVideoPlayer* videoPlayer1 = new OpenCVVideoPlayer(0, "Video1", true, video2);
+//                         mVideoPlayersVector[VideoPlayerTypes::VIDEO_1] = videoPlayer1;
+//                         videoPlayer1->setType(VideoPlayerTypes::VIDEO_1);
+//                         videoPlayer1->init();
+
+//                         OpenCVVideoPlayer* videoPlayer2 = new OpenCVVideoPlayer(0, "Video2", true, "../res/videos/sea.avi");
+//                         mVideoPlayersVector[VideoPlayerTypes::VIDEO_2] = videoPlayer2;
+//                         videoPlayer2->setType(VideoPlayerTypes::VIDEO_2);
+//                         videoPlayer2->init();
+//                     }
                      else
                      {
-                         std::cout << "Error in parameters: Specify input camera: [--fly], [--cam], [--video], [--stereo]" << std::endl;
+                         std::cout << "Error in parameters: Specify input camera: [--fly], [--cam], [--video [path]]" << std::endl;
                          exit(-1);
                      }
                 }

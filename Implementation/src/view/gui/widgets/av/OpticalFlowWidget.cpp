@@ -32,6 +32,16 @@ namespace src
                               getTermCriteriaParameters(model::av::OpticalFlowTypes::MAX_COUNT))
                       , mEpsilon(mAVManager->getAlgorithm(model::av::AVTypes::OPTICAL_FLOW)->
                               getTermCriteriaParameters(model::av::OpticalFlowTypes::EPS))
+                      , mSizeWidth(mAVManager->getAlgorithm(model::av::AVTypes::OPTICAL_FLOW)->
+                                   getOpticalFlowParameters(model::av::OpticalFlowTypes::WIN_SIZE_WIDTH))
+                      , mSizeHeight(mAVManager->getAlgorithm(model::av::AVTypes::OPTICAL_FLOW)->
+                                   getOpticalFlowParameters(model::av::OpticalFlowTypes::WIN_SIZE_HEIGHT))
+                      , mMaxLevels(mAVManager->getAlgorithm(model::av::AVTypes::OPTICAL_FLOW)->
+                                   getOpticalFlowParameters(model::av::OpticalFlowTypes::MAX_LEVELS))
+                      , mFlags(mAVManager->getAlgorithm(model::av::AVTypes::OPTICAL_FLOW)->
+                                   getOpticalFlowParameters(model::av::OpticalFlowTypes::FLAGS))
+                      , mThreshold(mAVManager->getAlgorithm(model::av::AVTypes::OPTICAL_FLOW)->
+                                   getOpticalFlowParameters(model::av::OpticalFlowTypes::THRESHOLD))
                     {
                         ui->setupUi(this);
 
@@ -57,7 +67,6 @@ namespace src
                         //TermCriteria
                         ui->maxCountSpinBox->setValue(mMaxCount);
                         ui->epsilonSpinBox->setValue(mEpsilon);
-
                         if (mType == 1)
                         {
                             ui->countRadioButton->setChecked(true);
@@ -67,11 +76,35 @@ namespace src
                             ui->epsRadioButton->setChecked(true);
                         }
 
+                        //OpticalFlow
+                        ui->sizeWidthSpinBox->setValue(mSizeWidth);
+                        ui->sizeHeightSpinBox->setValue(mSizeHeight);
+                        ui->maxLevelsSpinBox->setValue(mMaxLevels);
+                        ui->thresholdSpinBox->setValue(mThreshold);
+
+                        if (mFlags == 0)
+                        {
+                            ui->initialFlowRadioButton->setChecked(true);
+                        }
+                        else if (mFlags == 8)
+                        {
+                            ui->eigenvalsRadioButton->setChecked(true);
+                        }
+
+                        ///@todo When implement the GPU delete this lines
+                        ui->gpuRadioButton->setEnabled(false);
+                        ui->cpuRadioButton->setCheckable(false);
+
                     }
 
                     OpticalFlowWidget::~OpticalFlowWidget()
                     {
                         delete ui;
+                    }
+
+                    void OpticalFlowWidget::setCPUGPUActivated(bool activate)
+                    {
+                        ui->cpuRadioButton->setEnabled(activate);
                     }
 
                     void OpticalFlowWidget::on_maxCornerSpinBox_editingFinished()
@@ -162,6 +195,78 @@ namespace src
                         }
                     }
 
+                    void OpticalFlowWidget::on_cpuRadioButton_toggled(bool checked)
+                    {
+                        ui->gpuRadioButton->setChecked(false);
+                        mProcessing = model::av::AVTypes::CPU;
+
+                        update();
+                    }
+
+                    void OpticalFlowWidget::on_gpuRadioButton_toggled(bool checked)
+                    {
+                        ui->cpuRadioButton->setChecked(false);
+                        mProcessing = model::av::AVTypes::GPU;
+
+                        update();
+                    }
+
+                    void OpticalFlowWidget::on_sizeWidthSpinBox_editingFinished()
+                    {
+                        int value = ui->sizeWidthSpinBox->value();
+                        if (mSizeWidth != value)
+                        {
+                            mSizeWidth = value;
+                            update();
+                        }
+                    }
+
+                    void OpticalFlowWidget::on_sizeHeightSpinBox_editingFinished()
+                    {
+                        int value = ui->sizeHeightSpinBox->value();
+                        if (mSizeHeight != value)
+                        {
+                            mSizeHeight = value;
+                            update();
+                        }
+                    }
+
+                    void OpticalFlowWidget::on_maxLevelsSpinBox_editingFinished()
+                    {
+                        int value = ui->maxLevelsSpinBox->value();
+                        if (mMaxLevels != value)
+                        {
+                            mMaxLevels = value;
+                            update();
+                        }
+                    }
+
+                    void OpticalFlowWidget::on_initialFlowRadioButton_clicked()
+                    {
+                        ui->eigenvalsRadioButton->setChecked(false);
+                        mFlags = 0;
+
+                        update();
+                    }
+
+                    void OpticalFlowWidget::on_eigenvalsRadioButton_clicked()
+                    {
+                        ui->initialFlowRadioButton->setChecked(false);
+                        mFlags = 8;
+
+                        update();
+                    }
+
+                    void OpticalFlowWidget::on_thresholdSpinBox_editingFinished()
+                    {
+                        double value = ui->thresholdSpinBox->value();
+                        if (mThreshold != value)
+                        {
+                            mThreshold = value;
+                            update();
+                        }
+                    }
+
                     void OpticalFlowWidget::update()
                     {
                         std::map<std::string, double> goodFeatures;
@@ -176,10 +281,15 @@ namespace src
                         termCriteria[model::av::OpticalFlowTypes::MAX_COUNT] = mMaxCount;
                         termCriteria[model::av::OpticalFlowTypes::EPS] = mEpsilon;
 
-                        notify(events::ModifyOpticalFlowEvent(mProcessing, goodFeatures, termCriteria));
+                        std::map<std::string, double> opticalFlow;
+                        opticalFlow[model::av::OpticalFlowTypes::WIN_SIZE_WIDTH] = mSizeWidth;
+                        opticalFlow[model::av::OpticalFlowTypes::WIN_SIZE_HEIGHT] = mSizeHeight;
+                        opticalFlow[model::av::OpticalFlowTypes::MAX_LEVELS] = mMaxLevels;
+                        opticalFlow[model::av::OpticalFlowTypes::FLAGS] = mFlags;
+                        opticalFlow[model::av::OpticalFlowTypes::THRESHOLD] = mThreshold;
+
+                        notify(events::ModifyOpticalFlowEvent(mProcessing, goodFeatures, termCriteria, opticalFlow));
                     }
-
-
                 }
             }
         }

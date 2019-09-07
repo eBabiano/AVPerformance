@@ -26,6 +26,7 @@ namespace src
 
                         virtual void init();
                         virtual void run(cv::Mat image, bool isShown);
+                        virtual void stop();
 
                         void setGuid(const FlyCapture2::PGRGuid &value);
                         virtual cv::Mat getCurrentFrame();

@@ -20,6 +20,7 @@ namespace src
                         virtual void init() = 0;
                         //virtual void run(cv::Mat newframe) = 0;
                         virtual void run(cv::Mat image, bool isShown) = 0;
+                        virtual void stop() = 0;
 
                         virtual cv::Mat getCurrentFrame(){}
 

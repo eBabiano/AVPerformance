@@ -19,14 +19,14 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QRadioButton" name="gpuRadioButton">
+        <widget class="QRadioButton" name="cpuRadioButton">
          <property name="text">
           <string>CPU</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="cpuRadioButton">
+        <widget class="QRadioButton" name="gpuRadioButton">
          <property name="text">
           <string>GPU</string>
          </property>
@@ -39,7 +39,7 @@
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="goodFeaturesTab">
       <property name="sizePolicy">
@@ -49,7 +49,7 @@
        </sizepolicy>
       </property>
       <attribute name="title">
-       <string>GFT</string>
+       <string>GoodFeatures</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
@@ -162,7 +162,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="cornerSubTab">
+     <widget class="QWidget" name="opticalFlowLukas">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -170,13 +170,98 @@
        </sizepolicy>
       </property>
       <attribute name="title">
-       <string>CSP</string>
+       <string>OF-LucasKanade</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_3"/>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_9">
+         <item>
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>Win. Size:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Width</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="sizeWidthSpinBox"/>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>Height</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="sizeHeightSpinBox"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_10">
+         <item>
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>Max. Levels</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="maxLevelsSpinBox"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_11">
+         <item>
+          <widget class="QLabel" name="label_12">
+           <property name="text">
+            <string>FLAGS</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="initialFlowRadioButton">
+           <property name="text">
+            <string>INITIAL_FLOW</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="eigenvalsRadioButton">
+           <property name="text">
+            <string>LK_MIN_EIGENVALS</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_12">
+         <item>
+          <widget class="QLabel" name="label_13">
+           <property name="text">
+            <string>Min. Eigen Threashold:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="thresholdSpinBox"/>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="termCritTab">
       <attribute name="title">
-       <string>TC</string>
+       <string>TermCriteria</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>

@@ -1,3 +1,7 @@
+//File: MainWindow.hpp
+//Author: Emilio Babiano <emilio.babiano@edu.uah.es>
+//Version: 0.0.1
+
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
@@ -25,6 +29,7 @@ namespace src
         namespace gui
         {
             class MainWindow : public QWidget
+                    , public util::Observer<model::av::events::AVStarted>
             {
                 Q_OBJECT
 
@@ -41,6 +46,8 @@ namespace src
 
                 void setModifyAlgorithmParametersController(
                         controller::ModifyAlgorithmParametersController& ModifyAlgorithmParametersController);
+
+                virtual void observableUpdated(const model::av::events::AVStarted& event);
 
             public slots:
                 void timerEvent(QTimerEvent *event);
@@ -61,6 +68,7 @@ namespace src
                 widgets::BenchmarkingWidget* mBenchmarkingWidget;
                 widgets::ControlPanelWidget* mControlPanelWidget;
                 cv::Mat mImage;
+                int mIdTimer;
 
                 bool mIsPainted;
 
