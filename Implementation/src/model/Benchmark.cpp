@@ -5,6 +5,7 @@
 #include <src/model/Benchmark.hpp>
 #include <src/model/av/AVTypes.hpp>
 
+#include <iostream>
 namespace src
 {
     namespace model
@@ -15,6 +16,8 @@ namespace src
             , mIsGPU(false)
             , mCurrentFrames(0)
         {
+            mProcessingTimeMillisecVector.push_back(0.0);
+            mFramesPerSecondsVector.push_back(0.0);
         }
         double Benchmark::getProcessingTimeMillisec() const
         {
@@ -23,8 +26,11 @@ namespace src
 
         void Benchmark::setProcessingTimeMillisec(double value)
         {
-            mProcessingTimeMillisecVector.push_back(mProcessingTimeMillisec);
-            mProcessingTimeMillisec = value;
+            if (value >= 0.0)
+            {
+                mProcessingTimeMillisecVector.push_back(mProcessingTimeMillisec);
+                mProcessingTimeMillisec = value;
+            }
         }
         int Benchmark::getFramesPerSec() const
         {
@@ -33,8 +39,11 @@ namespace src
 
         void Benchmark::setFramesPerSec(int value)
         {
-            mFramesPerSecondsVector.push_back(value);
-            mFramesPerSec = value;
+            if (value >= 0)
+            {
+                mFramesPerSecondsVector.push_back(value);
+                mFramesPerSec = value;
+            }
         }
 
         int Benchmark::getFrames() const
@@ -54,6 +63,10 @@ namespace src
             for (int i = 0; i < size; i++)
             {
                 acumValue = mProcessingTimeMillisecVector.at(i) + acumValue;
+                if (acumValue < 0)
+                {
+                    break;
+                }
             }
 
             mProcessingTimeMillisecVector.clear();

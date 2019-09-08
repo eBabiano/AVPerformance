@@ -24,8 +24,8 @@ namespace src
 
            void PedestrianDetection::runCPUThread()
            {
-               unsigned t1, t2;
-               double time;
+               unsigned t1 = 0.0;
+               unsigned t2 = 0.0;
                cv::Mat frame;
                cv::HOGDescriptor hog;
 
@@ -36,13 +36,14 @@ namespace src
 
                    if (!frame.empty())
                    {
-                       t1 = clock();
                        cv::cvtColor(frame, frame, CV_RGB2GRAY);
+                       t1 = clock();
                        hog.setSVMDetector(cv::HOGDescriptor::getDefaultPeopleDetector());
 
                        std::vector<cv::Rect> found, found_filtered;
                        hog.detectMultiScale(frame, found, mHitThreshold, cv::Size(mWindStrideWidth, mWindStrideHeight),
                                             cv::Size(mPaddingWidth, mPaddingHeight), mScale, mFinalThreshold, mUseMeanShiftGrouping);
+                       t2 = clock();
 
                        size_t i, j;
                        for (i=0; i<found.size(); i++)
@@ -64,7 +65,6 @@ namespace src
                            r.height = cvRound(r.height*0.9);
                            cv::rectangle(frame, r.tl(), r.br(), cv::Scalar(0,255,0), 2);
                        }
-                       t2 = clock();
 
                        frame.copyTo(mImage);
 
@@ -77,8 +77,8 @@ namespace src
 
            void PedestrianDetection::runGPUThread()
            {
-               unsigned t1, t2;
-               double time;
+               unsigned t1 = 0.0;
+               unsigned t2 = 0.0;
                cv::Mat frame;
                cv::gpu::GpuMat grayScaleFrame, capturedFrameGPU;
                cv::gpu::HOGDescriptor hog;
@@ -91,12 +91,13 @@ namespace src
 
                    if (!capturedFrameGPU.empty())
                    {
-                       t1 = clock();
                        cv::gpu::cvtColor(capturedFrameGPU, grayScaleFrame, CV_RGB2GRAY);
+                       t1 = clock();
                        hog.setSVMDetector(cv::gpu::HOGDescriptor::getDefaultPeopleDetector());
 
                        std::vector<cv::Rect> found, found_filtered;
                        hog.detectMultiScale(grayScaleFrame, found/*, 0, cv::Size(8,8), cv::Size(128,128)*/);
+                       t2 = clock();
 
                        size_t i, j;
                        for (i=0; i<found.size(); i++)
@@ -118,7 +119,6 @@ namespace src
                            r.height = cvRound(r.height*0.9);
                            cv::rectangle(frame, r.tl(), r.br(), cv::Scalar(0,255,0), 2);
                        }
-                       t2 = clock();
 
                        frame.copyTo(mImage);
 

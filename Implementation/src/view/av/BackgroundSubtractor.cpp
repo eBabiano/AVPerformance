@@ -17,8 +17,8 @@ namespace src
 
            void BackgroundSubtractor::runCPUThread()
            {
-               unsigned t1, t2;
-               double time;
+               unsigned t1 = 0.0;
+               unsigned t2 = 0.0;
                cv::Mat frame;
                cv::Mat frame_gray;
                cv::BackgroundSubtractorMOG2 mog2;

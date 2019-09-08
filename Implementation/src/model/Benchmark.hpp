@@ -50,7 +50,6 @@ namespace src
                 int mCurrentFrames;
 
                 int mFrames;
-                double mWeightedAverageProcessingTimeMillisec;
                 bool mIsPlaying;
 
                 std::vector<double> mProcessingTimeMillisecVector;

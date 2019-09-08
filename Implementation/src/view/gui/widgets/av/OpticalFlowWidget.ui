@@ -39,7 +39,7 @@
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="goodFeaturesTab">
       <property name="sizePolicy">
@@ -253,7 +253,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QDoubleSpinBox" name="thresholdSpinBox"/>
+          <widget class="QDoubleSpinBox" name="thresholdSpinBox">
+           <property name="maximum">
+            <double>1.000000000000000</double>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>

@@ -101,9 +101,11 @@ namespace src
            void AVView::updateBenchmark(double initTime, double endTime)
            {
                double time = (double(endTime - initTime) / CLOCKS_PER_SEC);
+               int fps = 0;
 
                double millisec = time * 1000;
-               int fps = 1 / time;
+               if (time > 0)
+                    fps = 1 / time;
 
                notify(events::UpdateBenchmarkEvent(millisec, fps, ""));
            }

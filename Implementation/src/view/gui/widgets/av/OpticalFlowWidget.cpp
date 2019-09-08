@@ -92,8 +92,8 @@ namespace src
                         }
 
                         ///@todo When implement the GPU delete this lines
-                        ui->gpuRadioButton->setEnabled(false);
-                        ui->cpuRadioButton->setCheckable(false);
+                        ui->gpuRadioButton->setVisible(false);
+                        ui->cpuRadioButton->setVisible(false);
 
                     }
 

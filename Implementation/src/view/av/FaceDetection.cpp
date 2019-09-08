@@ -22,8 +22,8 @@ namespace src
            {
                cv::CascadeClassifier face_cascade;
                cv::Mat grayScaleFrame, capturedFrame;
-               unsigned t1, t2;
-               double time;
+               unsigned t1 = 0.0;
+               unsigned t2 = 0.0;
                //create a vector array to store the face found
                std::vector<cv::Rect> faces;
 
@@ -71,8 +71,8 @@ namespace src
                cv::gpu::CascadeClassifier_GPU face_cascade;
                cv::gpu::GpuMat grayScaleFrame, capturedFrameGPU, bufferFrame;
                cv::Mat cpuFrame, capturedFrameCPU;
-               unsigned t1, t2;
-               double time;
+               unsigned t1 = 0.0;
+               unsigned t2 = 0.0;
                int numFaces;
 
                const std::string& file = "../res/gpu/haarcascade_frontalface_alt.xml";

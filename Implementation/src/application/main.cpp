@@ -24,18 +24,6 @@
 
 #include <QApplication>
 
-static cv::Point2f point;
-static bool addRemovePt;
-
-void onMouse(int event, int x, int y, int flags, void* userdata)
-{
-    if (event == cv::EVENT_LBUTTONDOWN)
-    {
-        point = cv::Point2f((float) x, (float) y);
-        addRemovePt = true;
-    }
-}
-
 int main(int argc, char* argv[])
 {
 
