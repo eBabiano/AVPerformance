@@ -37,6 +37,7 @@ namespace src
                    mMutex.lock();
 
                    getCapturedImage().copyTo(image);
+                   t1 = clock();
                    if( !image.empty() )
                    {
                        cv::cvtColor(image, gray, CV_BGR2GRAY);
@@ -58,10 +59,8 @@ namespace src
                            std::vector<float> err;
                            if(prevGray.empty())
                                gray.copyTo(prevGray);
-                           t1 = clock();
                            cv::calcOpticalFlowPyrLK(prevGray, gray, points[0], points[1], status, err, winSize,
                                    mMaxLevels, termcrit, mFlags, mThreshold);
-                           t2 = clock();
                            size_t i, k;
                            for( i = k = 0; i < points[1].size(); i++ )
                            {
@@ -76,6 +75,7 @@ namespace src
 
                        image.copyTo(mImage);
 
+                       t2 = clock();
                        updateBenchmark(t1, t2);
 
                        std::swap(points[1], points[0]);

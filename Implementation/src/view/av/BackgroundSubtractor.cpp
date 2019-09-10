@@ -27,21 +27,21 @@ namespace src
                {
                    mMutex.lock();
                    getCapturedImage().copyTo(frame);
+                   t1 = clock();
                    if (!frame.empty())
                    {
                        if (frame.channels() == 3 || frame.channels() == 4)
                        {
                            cv::cvtColor(frame, frame_gray, CV_BGR2GRAY);
 
-                           t1 = clock();
                            mog2(frame_gray, frame_gray, mLearningRate);
-                           t2 = clock();
-
-                           frame_gray.copyTo(mImage);
-
-                           updateBenchmark(t1, t2);
                        }
                    }
+
+                   frame_gray.copyTo(mImage);
+
+                   t2 = clock();
+                   updateBenchmark(t1, t2);
                    mMutex.unlock();
                }
            }

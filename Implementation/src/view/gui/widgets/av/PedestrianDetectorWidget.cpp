@@ -64,6 +64,13 @@ namespace src
                         ui->gpuRadioButton->setChecked(false);
                         mProcessing = model::av::AVTypes::CPU;
 
+                        ui->strideWidthSpinBox->setEnabled(true);
+                        ui->strideHeightSpinBox->setEnabled(true);
+                        ui->paddingWithSpinBox->setEnabled(true);
+                        ui->paddingHeightSpinBox->setEnabled(true);
+                        ui->finalThresholdSpinBox->setEnabled(true);
+                        ui->meanShiftCheckBox->setEnabled(true);
+
                         update();
                     }
 
@@ -71,6 +78,13 @@ namespace src
                     {
                         ui->cpuRadioButton->setChecked(false);
                         mProcessing = model::av::AVTypes::GPU;
+
+                        ui->strideWidthSpinBox->setEnabled(false);
+                        ui->strideHeightSpinBox->setEnabled(false);
+                        ui->paddingWithSpinBox->setEnabled(false);
+                        ui->paddingHeightSpinBox->setEnabled(false);
+                        ui->finalThresholdSpinBox->setEnabled(false);
+                        ui->meanShiftCheckBox->setEnabled(false);
 
                         update();
                     }

@@ -34,6 +34,7 @@ namespace src
                    mMutex.lock();
 
                    getCapturedImage().copyTo(capturedFrame);
+                   t1 = clock();
                    int flags = CV_HAAR_FIND_BIGGEST_OBJECT | CV_HAAR_SCALE_IMAGE;
 
                    //convert captured image to gray scale and equalize
@@ -42,11 +43,9 @@ namespace src
                        cv::cvtColor(capturedFrame, grayScaleFrame, CV_RGB2GRAY);
                        cv::equalizeHist(grayScaleFrame, grayScaleFrame);
 
-                       t1 = clock();
                        //find faces and store them in the vector array
                        face_cascade.detectMultiScale(grayScaleFrame, faces, mScaleFactor, mNeightbors,
                                                      flags, cv::Size(mWidth, mHeight));
-                       t2 = clock();
                    }
 
                    //draw a rectangle for all found faces in the vector array on the original image
@@ -60,6 +59,7 @@ namespace src
 
                    capturedFrame.copyTo(mImage);
 
+                   t2 = clock();
                    updateBenchmark(t1, t2);
                    mMutex.unlock();
                }
@@ -84,6 +84,7 @@ namespace src
                    mMutex.lock();
 
                    getCapturedImage().copyTo(capturedFrameCPU);
+                   t1 = clock();
                    capturedFrameGPU.upload(getCapturedImage());
 
                    //convert captured image to gray scale and equalize
@@ -92,10 +93,8 @@ namespace src
                        cv::gpu::cvtColor(capturedFrameGPU, grayScaleFrame, CV_RGB2GRAY);
                        cv::gpu::equalizeHist(grayScaleFrame, grayScaleFrame);
 
-                       t1 = clock();
                        //find faces and store them in the vector array
                        numFaces = face_cascade.detectMultiScale(grayScaleFrame, bufferFrame, mScaleFactor, mNeightbors, cv::Size(mWidth, mHeight));
-                       t2 = clock();
                    }
 
 
@@ -120,6 +119,7 @@ namespace src
 
                    capturedFrameCPU.copyTo(mImage);
 
+                   t2 = clock();
                    updateBenchmark(t1, t2);
                    mMutex.unlock();
                }
